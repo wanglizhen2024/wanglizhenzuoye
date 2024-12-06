@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<head>
+    <title>我的邮箱</title>
+    <style>
+div{
+    display:flex;
+}
+.box{
+    flex-direction: column;
+    align-items: center;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('../youxiang/font/iconfont.ttf') format('truetype');
+}
+.iconfont {
+    font-family: "iconfont";
+    font-size: 80px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+}
+.box1 {
+     width:1000px;
+     height:50px;
+     background-color:whitesmoke
+}
+.box2 a{
+    width:200px;
+    height:50px;
+    color:black;
+    text-align: center;
+    padding:16px 0;
+    background-color: whitesmoke;
+    justify-content:space-around;
+    text-decoration: none;
+}
+.box2 a:hover{
+    background-color: pink;
+}
+.box3{
+    width: 1000px;
+    height:100px;
+    background-color: white;
+}
+.box4{
+    width:1000px;
+    height:400px;
+    background-color: whitesmoke;
+    flex-direction: row;
+}
+.box5{
+    width:100px;
+    height:400px;
+    background-color:white;
+    flex-direction: column;
+}
+.box6{
+    overflow: scroll;
+    width:700px;
+    height:400px;
+    align-items: flex-end;
+    background-color: whitesmoke;
+}
+.box7{
+   width:700px;
+   height:100px;
+   flex-direction: column;
+}
+.box8 a{
+    width:175px;
+    height:100px;
+    flex-direction: row;
+    justify-content: space-around;
+    color:black;
+    text-decoration: none;
+}
+.box9{
+    font-size: 40px;
+    width: 1000px;
+    height: 100px;
+}
+.box10{
+    width:50px;
+    height:100px;
+    background-color: whitesmoke;
+}
+.box10 a::before,.box10 a::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    border:2px solid rgba(0 ,0 ,0 , 0.1);
+    border-radius: 50%;
+    top:43%;
+    left:23%;
+    transform: translate(-50%,-50%) scale(0.2);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.box10 a::after{
+    width:70px;
+    height:70px;
+    border-width: 6px;
+    transform: translate(-50%,-50%) scale(0.8);
+}
+.box10 a:hover::before,
+.box10 a:hover::after {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+}
+.box11{
+    width:50px;
+    height:30px;
+    background-color: white;
+    color:black;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+.box12{
+    width:700px;
+    height:30px;
+    background-color: white;
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+    <div class="box9">
+        <span class="iconfont">&#xe694;</span>
+        <strong>欢迎回来</strong>
+    </div>
+    <div class="box1">
+        <div class="box2" overflow="hidden">
+            <a href="#">今日</a>
+            <a href="#">讯息</a>
+            <a href="#">服务</a>
+            <a href="#">校园</a>
+            <a href="#">我的</a>
+        </div>
+    </div>
+    <div class="box3"></div>
+    <div class="box9"><strong >邮箱动态-收件箱</strong></div>
+    <div class="box4">
+        <div class="box5">
+            <div class="box10"><a class="iconfont" href="#">&#xe789</a></div> 
+            <div class="box10"><a class="iconfont" href="#">&#xe789</a></div>
+        </div>
+    <div class="box6">
+            <div class="box7">
+                <div class="box8">
+                     <a href="#">邮件信息            2024.12.03</a>
+                     <a href="#">删除</a>
+                     <a href="#">回复</a>
+                </div>
+                <div class="box8">
+                    <a href="#">邮件信息             2024.12.03</a>
+                    <a href="#">删除</a>
+                    <a href="#">回复</a>
+                </div>
+                <div class="box8">
+                    <a href="#">邮件信息             2024.12.03</a>
+                    <a href="#">删除</a>
+                    <a href="#">回复</a>
+            </div>
+            <div class="box8">
+                <a href="#">邮件信息             2024.12.03</a>
+                <a href="#">删除</a>
+                <a href="#">回复</a>
+                </div>
+                <div class="box8">
+                    <a href="#">邮件信息             2024.12.03</a>
+                    <a href="#">删除</a>
+                    <a href="#">回复</a>
+                    </div>
+        </div>
+    </div>
+    </div>
+    <div class="box12">
+        <a class="box11" href="#">写邮件</a>
+    </div>
+</div>
+</body>
+</html>
