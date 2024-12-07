@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7853991",
+      "name": "山楂片",
+      "font_class": "shanzhapian",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "7897573",
+      "name": "画板 1 副本 30",
+      "font_class": "huabanfuben",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "14424700",
+      "name": "heads-17",
+      "font_class": "heads-17",
+      "unicode": "e921",
+      "unicode_decimal": 59681
+    },
+    {
+      "icon_id": "21362753",
+      "name": "活动推广",
+      "font_class": "huodongtuiguang",
+      "unicode": "e7cb",
+      "unicode_decimal": 59339
+    }
+  ]
+}

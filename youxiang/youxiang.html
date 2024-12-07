@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <head>
     <title>我的邮箱</title>
+    <script src="../youxiang/touxiang/iconfont.js"></script>
     <style>
 div{
     display:flex;
 }
-.box{
+.back{
     flex-direction: column;
     align-items: center;
+}
+.box{
+    width:1000px;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 3px 1px rgb(163, 218, 239);
 }
 @font-face {
   font-family: 'iconfont';
@@ -20,6 +27,56 @@ div{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: black;
+}
+@font-face {
+  font-family: 'd';
+  src: url('../youxiang/d/iconfont.ttf') format('truetype');
+}
+.d {
+    font-family: "d";
+    font-size: 40px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+    justify-content: end;
+    position:absolute;
+    top:5%;
+    left:75%;
+}
+@font-face {
+    font-family: 'download';
+    src: url('../youxiang/download/iconfont.ttf')
+}
+.download {
+    font-family: "download";
+    font-size: 40px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+    flex-direction: row;
+    justify-content: end;
+}
+@font-face {
+    font-family: 'down';
+    src: url('../youxiang/down/iconfont.ttf')
+}
+.down {
+    font-family: "down";
+    font-size: 30px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+}
+ 
+ .icon {
+  width: 3em;
+  height: 3em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 .box1 {
      width:1000px;
@@ -37,7 +94,7 @@ div{
     text-decoration: none;
 }
 .box2 a:hover{
-    background-color: pink;
+    background-color: rgb(163, 218, 239);
 }
 .box3{
     width: 1000px;
@@ -51,22 +108,36 @@ div{
     flex-direction: row;
 }
 .box5{
-    width:100px;
+    width:150px;
     height:400px;
     background-color:white;
     flex-direction: column;
+    position:relative
+}
+.box5::before{
+    content:"";
+    border:20px solid transparent;
+    border-left: 20px solid rgb(163, 218, 239);
+    position:absolute;
+    top:23%;
+    left:95%;
 }
 .box6{
     overflow: scroll;
     width:700px;
     height:400px;
     align-items: flex-end;
-    background-color: whitesmoke;
+    background-color: white;
 }
 .box7{
    width:700px;
-   height:100px;
+   height:60px;
    flex-direction: column;
+   margin-bottom: 5px;
+   background:linear-gradient(90deg,rgb(163, 218, 239),white);
+   border-radius: 10px;
+   box-shadow: 2px 2px 1px 1px gainsboro;
+   
 }
 .box8 a{
     width:175px;
@@ -75,11 +146,13 @@ div{
     justify-content: space-around;
     color:black;
     text-decoration: none;
+    text-align: center;
 }
 .box9{
     font-size: 40px;
     width: 1000px;
     height: 100px;
+    background-color: rgb(163, 218, 239);
 }
 .box10{
     width:50px;
@@ -93,8 +166,8 @@ div{
     height:100px;
     border:2px solid rgba(0 ,0 ,0 , 0.1);
     border-radius: 50%;
-    top:43%;
-    left:23%;
+    top:15%;
+    left:27%;
     transform: translate(-50%,-50%) scale(0.2);
     opacity: 0;
     transition: all 0.3s ease;
@@ -117,19 +190,55 @@ div{
     color:black;
     justify-content: flex-end;
     text-decoration: none;
+    background-color: blue;
+    border-radius: 50px;
 }
 .box12{
     width:700px;
-    height:30px;
-    background-color: white;
+    height:30px;   
+}
+.box13{
+    font-size: 40px;
+    width: 1000px;
+    height: 100px;
+    
+}
+.heart{
+    width:100px;
+    height:90px;
+    position:relative
+}
+.heart::before{
+    content:"";
+    width:50px;
+    height:80px;
+    border-radius: 50px 50px 0 0;
+    background: rgb(163, 218, 239);
+    transform-origin: 0 100%;
+    transform: rotate(-45deg);
+    position:absolute;
+    left:50%;
+}
+.heart::after{
+    content:"";
+    width:50px;
+    height:80px;
+    border-radius: 50px 50px 0 0;
+    background: rgb(163, 218, 239);
+    transform-origin: 100% 100%;
+    transform: rotate(45deg);
+    position:absolute;
+
 }
     </style>
 </head>
 <body>
+    <div class="back">
     <div class="box">
     <div class="box9">
         <span class="iconfont">&#xe694;</span>
         <strong>欢迎回来</strong>
+        <span class="d">&#xe612</span>
     </div>
     <div class="box1">
         <div class="box2" overflow="hidden">
@@ -141,45 +250,73 @@ div{
         </div>
     </div>
     <div class="box3"></div>
-    <div class="box9"><strong >邮箱动态-收件箱</strong></div>
+    <div class="box13"><strong >邮箱动态-收件箱</strong></div>
     <div class="box4">
         <div class="box5">
-            <div class="box10"><a class="iconfont" href="#">&#xe789</a></div> 
-            <div class="box10"><a class="iconfont" href="#">&#xe789</a></div>
+            <div class="box10"><a class="down" href="#">&#xe612</a><a class="iconfont" href="#">&#xe789</a></div> 
+            <div class="box10"><a class="down" href="#">&#xe612</a><a class="iconfont" href="#">&#xe789</a></div>
         </div>
     <div class="box6">
             <div class="box7">
                 <div class="box8">
-                     <a href="#">邮件信息            2024.12.03</a>
-                     <a href="#">删除</a>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-heads-17
+                        "></use>
+                      </svg>
+                    <a href="#">   邮件信息 2024.12.03  </a>
+                     <a href="#">   删除</a>
                      <a href="#">回复</a>
                 </div>
+                <div class="box7">
                 <div class="box8">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-huodongtuiguang
+                        "></use>
+                      </svg>
                     <a href="#">邮件信息             2024.12.03</a>
                     <a href="#">删除</a>
                     <a href="#">回复</a>
                 </div>
+                </div>
+                <div class="box7">
                 <div class="box8">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shanzhapian
+                        "></use>
+                      </svg>
                     <a href="#">邮件信息             2024.12.03</a>
                     <a href="#">删除</a>
                     <a href="#">回复</a>
             </div>
+            </div>
+            <div class="box7">
             <div class="box8">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-huabanfuben
+                    "></use>
+                  </svg>
                 <a href="#">邮件信息             2024.12.03</a>
                 <a href="#">删除</a>
                 <a href="#">回复</a>
                 </div>
+                </div>
+                <div class="box7">
                 <div class="box8">
                     <a href="#">邮件信息             2024.12.03</a>
                     <a href="#">删除</a>
                     <a href="#">回复</a>
                     </div>
+                    </div>
         </div>
     </div>
+    <a class="download" href="#">&#xe630</a>
+    <a class="download" href="#">&#xe676</a>   
     </div>
     <div class="box12">
         <a class="box11" href="#">写邮件</a>
     </div>
+</div>
+<div class="heart"></div>
 </div>
 </body>
 </html>

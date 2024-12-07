@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1733574963073') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shanzhapian:before {
+  content: "\e61e";
+}
+
+.icon-huabanfuben:before {
+  content: "\e615";
+}
+
+.icon-heads-17:before {
+  content: "\e921";
+}
+
+.icon-huodongtuiguang:before {
+  content: "\e7cb";
+}
+
