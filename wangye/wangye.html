@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<head>
+    <title>动物世界</title>
+    <style>
+        div{
+            display: flex;
+        }
+        .back{
+            flex-direction: column;
+            align-items: center;
+        }
+        .box{
+            flex-direction: column;
+            align-items: center;
+            width: 1910px;
+            height:4674px;
+            background-color: whitesmoke;
+        }
+        .box1{
+            width: 1910px;
+            height: 2337px;
+            background-color: whitesmoke;
+            display: grid;
+            flex-direction: column;
+            align-items: center;
+        }
+        .wugui{
+            width: 1910px;
+            height: 893px;
+        }
+        .changjinlu{
+            position:relative;
+            width: 1910px;
+            height:773px;
+            top:670px;
+        }
+        .huoniao1{
+            width:340px;
+            height:500px;
+            position:relative;
+            left:404px;
+            top:-900px;
+            transition: 1.0s ease;
+        }
+        .huoniao1:hover{
+            transform: translate(0,-50px);
+        }
+        .huoniao2{
+            width:340px;
+            height:500px;
+            position:relative;
+            left:828px;
+            top:-1400px;
+            transition: 1.0s ease;
+        }
+        .huoniao2:hover{
+            transform: translate(0,-50px);
+        }
+        .huoniao3{
+            width:340px;
+            height:500px;
+            position:relative;
+            left:1254px;
+            top:-1900px;
+            transition: 1.0s ease;
+        }
+        .huoniao3:hover{
+            transform: translate(0,-50px);
+        }
+        .shuoming1{
+            width:951px;
+            height:549px;
+            position:relative;
+            left:499px;
+            top:-1700px;
+            background-color:#e0dfdf;
+            flex-direction: column;
+            transition: 1.0s ease;
+        }
+        .shuoming1:hover{
+            transform: translate(0,-50px);
+        }
+        .wenzi1{
+            width:951px;
+            height:349px;
+            color: #2a3f17;
+            font-size: 33px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: start;
+        }
+        .wenzi2{
+            width:951px;
+            height:200px;
+            justify-content: center;
+            align-items: center;
+        }
+        .wenzi2nei{
+            width:200px;
+            height:100px;
+            background-color: #2a3f17;
+            color:white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            transition: 1.0s ease;
+        }
+        .wenzi2nei:hover{
+            transform: scale(0.8);
+        }
+        .box2{
+            width: 1910px;
+            height: 2337px;
+            background-color: whitesmoke;
+            flex-direction: column;
+            align-items: center;
+        }
+        .wenzi3{
+            height:160px;
+            width:1910px;
+            background-color: whitesmoke;
+            justify-content: center;
+            align-items: center;
+        }
+        .wenzi3nei{
+            width:300px;
+            height:100px;
+            color:#2a3f17;
+            font-size: 60px;
+            justify-content: center;
+            align-items: center;
+            transition: 1.0s ease;
+        }
+        .wenzi3nei:hover{
+            border:5px solid #2a3f17;
+        }
+        .back3{
+            width: 1200px;
+            height:415px;
+            flex-direction: row;
+            justify-items: space-between;
+        }
+        .dongwu{
+            width:268px;
+            height:415px;
+            margin:5px;
+            flex-direction: column;
+            background-color: #e0dfdf;
+            color: #2a3f17;
+            align-items: center;
+            justify-content: center;
+            transition: 1.0s ease;
+        }
+        .dongwu:hover{
+            transform: translate(0,-50px);
+        }
+        .wenzi4{
+            height:275px;
+            width: 1910px;
+            background-color: whitesmoke;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .wenzi5{
+            width: 359px;
+            height: 69px;
+            background-color: white;
+            justify-content: center;
+            align-items: center;
+            color:#2a3f17;
+            font-size: 35px;
+            border: 2px solid #2a3f17;
+            transition: 1.0s ease;
+        }
+        .wenzi5:hover{
+            background-color: #2a3f17;
+            color: white;
+        }
+        .songshu{
+            width:1406px;
+            height:1100px;
+            background-color: whitesmoke;
+        }
+        .tupian{
+            width:703px;
+            height:1020px;
+        }
+        .wenzi6{
+            width:703px;
+            height:1020px;
+            background-color: whitesmoke;
+            color:#2a3f17;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+        .underline{
+            border-bottom:3px solid black;
+            width:1910px;
+            height:0px;
+        }
+        .jieshu{
+            width:1910px;
+            height:703px;
+            background-color: whitesmoke;
+            flex-direction: row;
+            align-items: center;
+           justify-content: center;
+        }
+        .wenzi7{
+            width:688px;
+            height:224px;
+            background-color:whitesmoke;
+            justify-content: center;
+            align-items: center;
+            margin:50px;
+            color:#2a3f17
+        }
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../wangye/caidan/iconfont.ttf') format('truetype');
+        }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 40px;
+            font-style: normal;
+            transition: 1.0s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .iconfont:hover{
+            transform: scale(0.6);
+        }
+        @font-face {
+            font-family: 'fangdajing';
+            src: url('../wangye/fangdajing/iconfont.ttf') format('truetype');
+        }
+        .fangdajing {
+           font-family: "fangdajing" !important;
+           font-size: 40px;
+           font-style: normal;
+           -webkit-font-smoothing: antialiased;
+           -moz-osx-font-smoothing: grayscale;
+           transition: 1.0s ease;
+           position: relative;
+           left:1800px;
+        }
+        .fangdajing:hover{
+            transform: scale(0.6);
+        }
+        .dinglan{
+            width:1910px;
+            height:50px;
+            background-color: whitesmoke;
+            margin-bottom:auto;
+        }
+        .xiangji{
+            position:relative;
+            left:800px;
+            transition: 1.0s ease;
+        }
+        .xiangji:hover{
+            transform: scale(0.8);
+
+        }
+        .wuguiwenzi{
+            color:#2a3f17;
+            padding:1rem 2rem;
+            text-align: center;
+            font-size: 40px;
+        }
+        .wugui,.wuguiwenzi,.fangkuai{
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .fangkuai{
+            width:200px;
+            height:100px;
+            background-color: #2a3f17;
+            color:white;
+            font-size: 45px;
+            text-align: end;
+            padding:5px 0;
+            position:relative;
+            top:200px;
+            left:100px;
+            transition: 1.0s ease;
+        }
+        .fangkuai:hover{
+            transform: scale(0.8);
+        }
+        a{
+            color:#2a3f17;
+        }
+        .wenzi7nei{
+            width: 300px;
+            height: 100px;
+            background-color: #949f8b;
+            color:white;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            transition: 1.0s ease;
+            animation-name: example;
+            animation-duration: 2s;
+            transition: 1s ease;
+        }
+        .wenzi7nei:hover{
+            transform: translate(0,-50px);
+            background-color: whitesmoke;
+            color:#949f8b
+        }
+        .wenzi6nei{
+            height:200px;
+            width:400px;
+            font-size: 50px;
+            color:#2a3f17;
+            align-items: center;
+            background-color: whitesmoke;
+            transition: 1.0s ease;
+        }
+        .wenzi6nei:hover{
+            transform: translate(0,-50px);
+        }
+        .wenzi6zhong{
+            width:400px;
+            height:200px;
+            color:#2a3f17;
+            font-size: 35px;
+            align-items: center;
+            transition: 1.0s ease;
+        }
+        .wenzi6zhong:hover{
+            transform: translate(50px);
+        }
+        .wenzi6zhi{
+            width:800px;
+            height:200px;
+            color: #2a3f17;
+            transition: 1.0s ease;
+        }
+        .wenzi6zhi:hover{
+            transform: scale(2.0);
+            transform: translate(50px,-50px);
+            font-size: 20px;
+        }
+        button{
+            border: none;
+        }
+     </style>
+</head>
+<body>
+    <div class="back">
+    <div class="box">
+        <div class="dinglan">
+            <span class="iconfont">&#xe6db;</span>
+            <span class="fangdajing">&#xe687;</span>
+        <div class="xiangji">
+            <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/11.png" width="200px" height="200px"/>
+        </div>
+    </div>
+        <div class="box1">
+            <div class="wugui">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/10.png" height="893px" width="1910px"/>
+            </div>
+            <div class="wuguiwenzi">
+                <h1>Animal Photography</h1>
+                <p>A silhouette of them,a simple little acttion,here are the photographer'<br>
+                    eyes the best of them,their laughter,their love,their every vivid,are recored by us.        
+                </p>
+            </div>
+            <button class="fangkuai" >EXPIORE</button>
+            <div class="changjinlu">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/6.png" height="773px" width="1910px"/>
+            </div>
+            <div class="huoniao1">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/7.png" height="495px" width="327px"/>
+            </div>
+            <div class="huoniao2">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/8.png" height="495px" width="327px"/>
+            </div>
+            <div class="huoniao3">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/9.png" height="495px" width="327px"/>
+            </div>
+            <div class="shuoming1">
+               <div class="wenzi1">"   Family Farms is the best place,where I can buy fruit,
+                vegetable,meat,honey,milk,eggs and so on for my retaurant directly fromupplier.
+                Super convinient.Thank you"xkhkdahgae,fnskdfjke,kdfgkahug.dlkfjie,dfhg;e.dlkg,kguherug.
+                kjfhge,hrughe.lfghuehrm,kljgioj.hg;ihguih;erhgue.iirge,jgtyif.
+               </div>
+               <div class="wenzi2">
+                <button class="wenzi2nei">SIGN UP</button>
+               </div>
+            </div>
+        </div>
+        <div class="box2">
+            <div class="wenzi3">
+                <button class="wenzi3nei">Different</button>
+            </div>
+        <div class="back3">
+            <div class="dongwu">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/5.png"  width="268px" height="261px"/>
+                <h1>Horse</h1>
+                <a href="#">A difference story</a>
+            </div>
+            <div class="dongwu">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/4.png"  width="268px" height="261px"/>
+                <h1>Kangaroo</h1>
+                <a href="#">A difference story</a>
+            </div>
+            <div class="dongwu">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/3.png"  width="268px" height="261px"/>
+                <h1>Lion</h1>
+                <a href="#">A difference story</a>
+            </div>
+            <div class="dongwu">
+                <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/2.png"  width="268px" height="261px"/>
+                <h1>Hummingbird</h1>
+                <a href="#">A difference story</a>
+            </div>
+        </div>    
+            <div class="wenzi4">
+                <button class="wenzi5">Know more</button>
+            </div>
+            <div class="songshu">
+                <div class="tupian">
+                    <img src="https://typora----wlz.oss-cn-beijing.aliyuncs.com/1.png"/>
+                </div>
+                <div class="wenzi6">
+                    <div class="wenzi6nei">The Photo</div>
+                    <div class="wenzi6zhi">
+                    <h2>"Famile Farm is the best placewhere I can buy fruit,
+                        vegetable,meat,honey,milk,eggs,and so on for my retaurant
+                        directly from supplier.Super convinient.Thank you"
+                    </h2>
+                    </div>
+                    <div class="wenzi6zhong">1.Look for it</div>
+                    <div class="wenzi6zhong">2.Cultivate feelings</div>
+                    <div class="wenzi6zhong">3.Shooting</div>
+                    <div class="wenzi6zhong">4.Harvest achievement</div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div class="jieshu">
+                  <div class="wenzi7">
+                    <h1>IN THE WILD<br>
+                    IN THE SEA</h1>
+                    <p><str>MORE</str><br>
+                    We create art.<br>
+                    We create life </p>
+                  </div>
+                  <div class="wenzi7">
+                    <button class="wenzi7nei">Big World</button>
+                  </div>
+            </div>
+        </div>
+           
+    </div>
+    </div>
+</body>
