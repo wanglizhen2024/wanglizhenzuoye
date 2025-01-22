@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>子串出现次数统计</title>
+    <link rel="stylesheet" href="./zifuchuan.css">
+</head>
+<body>
+        <div class="container">
+            <div class="header">
+                <h2>请输入一个字符串和子串</h2>
+            </div>
+            <div class="main">
+                <label for="zhuchuan">请输入一个字符串：</label>
+                     <input type="text" id="zhuchuan" name="zhuchuan"><br><br>
+                <label for="zichuan">请输入一个子串：</label>
+                     <input type="text" id="zichuan" name="zichuan"><br><br>
+                <button onclick="zichuanshu()">提交</button>
+            </div>
+              <div class="result1">
+                <p id="result"></p >
+              </div>
+            </div>
+        <script>
+            function zichuanshu(){
+                var zhuchuan=document.getElementById("zhuchuan").value;
+                var zichuan=document.getElementById("zichuan").value;
+                var count=0;
+                var index=0;
+                while((index=zhuchuan.indexOf(zichuan,index))!==-1){
+                    count++;
+                    index+=zichuan.length;
+                }
+                document.getElementById("result").textContent="子串出现的次数为："+count;
+            }
+        </script>     
+</body>
+</html>
