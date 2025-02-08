@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <style>
+        body {
+            font-family:Arial,sans-serif;
+            padding:20px;
+        }
+        form {
+            margin-top:20px;
+        }
+        label {
+            display:inline-block;
+            width:100px;
+            margin-bottom:10px;
+        }
+        input {
+            padding:5px;
+            margin-bottom:10px;
+        }
+        button {
+            padding:8px 15px;
+            margin-top:10px;
+            margin-right:10px;
+            cursor:pointer;
+        }
+        #user-list {
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div>当前时间：<span id="time"></span></div>
+    <form id="register-form">
+        <label for="username">账号：</label>
+        <input type="text" id="username" required>
+        <br>
+        <label for="password">密码：</label>
+        <input type="password" id="password" required>
+        <br>
+        <button type="submit">注册</button>
+        <button type="button" onclick="UserList()">获取用户列表</button>
+    </form>
+    <ul id="user-list"></ul>
+    <script>
+        function getTime(){
+            const now=new Date();
+            const year=now.getFullYear();
+            const month=String(now.getMonth() + 1).padStart(2, '0');
+            const day=String(now.getDate()).padStart(2, '0');
+            const hours=String(now.getHours()).padStart(2, '0');
+            const minutes=String(now.getMinutes()).padStart(2, '0');
+            const seconds=String(now.getSeconds()).padStart(2, '0');
+            const formattedTime=`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('time').textContent=formattedTime;
+        }
+        getTime();
+        setInterval(getTime,1000);
+        document.getElementById('register-form').addEventListener('submit',function(event){
+            event.preventDefault();
+            const username=document.getElementById('username').value;
+            const password=document.getElementById('password').value;
+            const xhr=new XMLHttpRequest();
+            xhr.open("POST","http://43.143.169.168:9090/user/register");
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.send(JSON.stringify({
+                "username":username,
+                "password":password,
+            }));
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState===XMLHttpRequest.DONE&&xhr.status===200){
+                    console.log(JSON.parse(xhr.responseText));
+                    alert('注册成功！');
+                }else if(xhr.readyState===XMLHttpRequest.DONE){
+                    console.error('注册失败:',xhr.status,xhr.responseText);
+                    alert('注册失败，请稍后再试。');
+                }
+            };
+        });
+        function UserList(){
+            const xhr=new XMLHttpRequest();
+            xhr.open("GET","http://43.143.169.168:9090/user/all");
+            xhr.send();
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState===XMLHttpRequest.DONE&&xhr.status===200){
+                    const userList=document.getElementById('user-list');
+                    userList.innerHTML='';
+                    const data=JSON.parse(xhr.responseText);
+                    data.forEach(user=>{
+                        const li=document.createElement('li');
+                        li.textContent=`用户名:${user.username}`;
+                        userList.appendChild(li);
+                    });
+                } else if(xhr.readyState===XMLHttpRequest.DONE){
+                    console.error('获取用户列表失败:',xhr.status,xhr.responseText);
+                    alert('获取用户列表失败，请稍后再试。');
+                }
+            };
+        }
+    </script>
+</body>
+</html>
