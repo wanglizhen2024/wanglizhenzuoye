@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书籍管理系统</title>
+    <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 6px 12px;
+            margin: 0 4px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .total-price {
+            font-size: 20px;
+            color: #2c3e50;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+        }
+        .add-book-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        input {
+            padding: 8px;
+            margin: 0 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .edit-buttons button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
+        .warning {
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="total-price">总价：¥{{ formattedTotalPrice }}</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>书名</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <book-item 
+                    v-for="(book, index) in books" 
+                    :key="book.id" 
+                    :book="book" 
+                    :index="index"
+                    @update-book="handleUpdateBook"
+                    @remove-book="removeBook"
+                ></book-item>
+            </tbody>
+        </table>
+        <div class="add-book-container">
+            <template v-if="!isAdding">
+                <button @click="startAddBook" style="background-color: #4CAF50; color: white;">添加新书</button>
+            </template>
+            <template v-else>
+                <input v-model="newBook.title" placeholder="书名（必填）" required>
+                <input type="number" v-model.number="newBook.price" placeholder="价格（≥0）" min="0" step="0.01">
+                <input type="number" v-model.number="newBook.quantity" placeholder="数量（≥1）" min="1">
+                <div class="edit-buttons">
+                    <button @click="confirmAddBook">确认添加</button>
+                    <button @click="cancelAddBook" style="background-color: #95a5a6;">取消</button>
+                </div>
+                <div v-if="errorMessage" class="warning">{{ errorMessage }}</div>
+            </template>
+        </div>
+    </div>
+
+    <script>
+        const BookItem = {
+            props: ['book', 'index'],
+            template: `
+                <tr>
+                    <td>{{ index + 1 }}</td>
+                    <td>
+                        <input type="text" 
+                            :value="book.title" 
+                            @input="$emit('update-book', { 
+                                index, 
+                                field: 'title', 
+                                value: $event.target.value 
+                            })">
+                    </td>
+                    <td>
+                        <input type="number" 
+                            :value="book.price" 
+                            min="0" 
+                            step="0.01"
+                            @input="$emit('update-book', { 
+                                index, 
+                                field: 'price', 
+                                value: parseFloat($event.target.value) || 0 
+                            })">
+                    </td>
+                    <td>
+                        <button @click="$emit('update-book', { 
+                            index, 
+                            field: 'quantity', 
+                            value: Math.max(book.quantity - 1, 0) 
+                        })">-</button>
+                        <input type="number" 
+                            :value="book.quantity" 
+                            min="0" 
+                            @input="$emit('update-book', { 
+                                index, 
+                                field: 'quantity', 
+                                value: parseInt($event.target.value) || 0 
+                            })">
+                        <button @click="$emit('update-book', { 
+                            index, 
+                            field: 'quantity', 
+                            value: book.quantity + 1 
+                        })">+</button>
+                    </td>
+                    <td>
+                        <button @click="$emit('remove-book', index)" 
+                            style="background-color: #e74c3c;">移除</button>
+                    </td>
+                </tr>
+            `
+        };
+        const app = Vue.createApp({
+            data() {
+                return {
+                    books: JSON.parse(localStorage.getItem('books')) || [
+                        { id: 1, title: '《JavaScript高级程序设计》', price: 126, quantity: 1 },
+                        { id: 2, title: '《你不知道的 JS（上卷）》', price: 78, quantity: 1 },
+                        { id: 3, title: '《你不知道的 JS（中卷）》', price: 76, quantity: 1 },
+                        { id: 4, title: '《你不知道的 JS（下卷）》', price: 64, quantity: 1 }
+                    ],
+                    newBook: {
+                        title: '',
+                        price: 0,
+                        quantity: 1
+                    },
+                    isAdding: false,
+                    nextBookId: 5,
+                    errorMessage: ''
+                };
+            },
+            computed: {
+                totalPrice() {
+                    return this.books.reduce((total, book) => 
+                        total + (book.price * Math.max(book.quantity, 0)), 0);
+                },
+                formattedTotalPrice() {
+                    return this.totalPrice.toFixed(2);
+                }
+            },
+            watch: {
+                books: {
+                    handler(newBooks) {
+                        localStorage.setItem('books', JSON.stringify(newBooks));
+                    },
+                    deep: true
+                }
+            },
+            methods: {
+                handleUpdateBook({ index, field, value }) {
+                    if (field === 'price' && value < 0) return;
+                    if (field === 'quantity' && value < 0) return;
+                    
+                    this.books[index][field] = value;
+                },
+                removeBook(index) {
+                    if (confirm(`确定要删除《${this.books[index].title}》吗？`)) {
+                        const removedBook = this.books.splice(index, 1)[0];
+                        alert(`已移除：${removedBook.title}`);
+                    }
+                },
+                startAddBook() {
+                    this.isAdding = true;
+                    this.newBook = { title: '', price: 0, quantity: 1 };
+                    this.errorMessage = '';
+                },
+                confirmAddBook() {
+                    if (!this.newBook.title.trim()) {
+                        this.errorMessage = '书名不能为空';
+                        return;
+                    }
+                    if (this.newBook.price < 0) {
+                        this.errorMessage = '价格不能为负数';
+                        return;
+                    }
+                    if (this.newBook.quantity < 1) {
+                        this.errorMessage = '数量至少为1';
+                        return;
+                    }
+                    if (this.books.some(b => b.title === this.newBook.title.trim())) {
+                        this.errorMessage = '该书已存在';
+                        return;
+                    }
+
+                    this.books.push({
+                        id: this.nextBookId++,
+                        ...this.newBook,
+                        title: this.newBook.title.trim()
+                    });
+                    
+                    this.isAdding = false;
+                    alert(`《${this.newBook.title.trim()}》添加成功！`);
+                },
+                cancelAddBook() {
+                    this.isAdding = false;
+                    this.errorMessage = '';
+                }
+            },
+            components: {
+                BookItem
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
